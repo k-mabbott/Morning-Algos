@@ -33,11 +33,11 @@ function countEvenNegatives(nums) {
 Write two functions:
 
 1. A function that returns a new string that is the given string with the first
-  letter capitalized.
+    letter capitalized.
 
 2. Given an array of strings,
-  return the same array with the first letter of each string capitalized using
-  the previously created helper function.
+    return the same array with the first letter of each string capitalized using
+    the previously created helper function.
 
 HINT: strings are immutable so to change a string you must create a new version
 of it.
@@ -68,6 +68,7 @@ function capitalize(string) {
 /* Tests for capitalization function */
 const strings1 = ['hello', 'world'];
 const expectedStrings1 = ['Hello', 'World'];
+const array1 = ['this', 'that', 'things', 'function', 'test']
 
 /**
  * Capitalizes the first letter of each string in the given array.
@@ -80,5 +81,20 @@ function capitalization(strings) {
     } return strings
 }
 
-console.log(capitalization(strings1))
+console.log(capitalization(array1))
 
+
+
+function capitalize(string) {
+    // if (string == ""){
+    //     return string;
+    var result = ""
+    var firstChar = string[0].toUpperCase()
+    result += firstChar
+    for (var i = 1; i < string.length; i++){
+        result += string[i];
+    }
+    return result;
+}
+
+console.log(capitalize("this"))
