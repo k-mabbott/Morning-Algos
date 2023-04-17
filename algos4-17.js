@@ -59,11 +59,11 @@ const expected3 = [];
    * @returns {Array<any>} The resulting concatenation of the given arr with
    *    itself.
    */
+
 function concatArrWithSelf(items) {
     var newArr = [];
-    newArr = items.slice();
-    for(var i = 0; i < items.length; i++){
-        newArr.push(items[i]);
+    for(var i = 0; i < items.length * 2; i++){
+        newArr.push(items[i % items.length]);
     } 
     return newArr;
 }
