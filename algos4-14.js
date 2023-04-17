@@ -51,8 +51,8 @@ function slice(items, startIdx, endIdx) {
     if (startIdx < 0){
         startIdx = 0;
     }
-        if (endIdx > items.length){
-        endIdx = items.length;
+    if (endIdx > items.length){
+    endIdx = items.length;
     }
     for (var i = startIdx; i<endIdx;i++){
         newArr.push(items[i])
