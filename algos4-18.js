@@ -81,9 +81,13 @@ poisonType(pokemon)
  * @returns {null} no return
  */
 function flyingSecondType(pokemon) {
-
+    for (var i = 0; i < pokemon.length; i++){
+        if (pokemon[i].types.length > 1 && pokemon[i].types[1] == 'flying'){
+            console.log(pokemon[i].name)
+        }
+    }
 }
-
+// flyingSecondType(pokemon)
 /** Bonus
  * console.log the reverse of the names of the pokemon whose only type is 'poison'
  * @param {Array<any>} pokemon
@@ -92,7 +96,11 @@ function flyingSecondType(pokemon) {
 function reversedNamesOfPoisonPokemon(pokemon) {
     for (var i = 0; i < pokemon.length; i++){
         if (pokemon[i].types.length == 1 && pokemon[i].types == 'poison'){
-            console.log(pokemon[i].name)
+            var result = '';
+            for (var j = pokemon[i].name.length-1; j >= 0; j--){
+                result += pokemon[i].name[j];
+            } console.log(result)
         }
     }
 }
+reversedNamesOfPoisonPokemon(pokemon)
