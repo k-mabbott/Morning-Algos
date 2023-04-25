@@ -9,13 +9,13 @@
 */
 
 const nums1 = [5, 2, 3];
-const expected1 = 1;
+// const expected1 = 1;
 
 const nums2 = [5, 4, 2, 2, 3];
-const expected2 = 2;
+// const expected2 = 2;
 
 const nums3 = [];
-const expected3 = -1;
+// const expected3 = -1;
 
 /**
  * Returns the index of the smallest number from the given array.
