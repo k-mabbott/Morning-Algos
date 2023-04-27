@@ -79,7 +79,7 @@ function shift(items) {
 }
 console.log(shift(arr01), 'expected' + expected01)
 console.log(shift(arr02), 'expected' + expected02)
-console.log(shift(arr03), 'expected' + '' + expected3)
+console.log(shift(arr03), 'expected' + expected3)
 
 
 

@@ -44,10 +44,12 @@ function removeAt(items, idx) {
         items[i] = items[i+1]
     }
     items.pop()
-    console.log(items)
+    // console.log(items)
     return temp;
 }
 console.log(removeAt(arr1, removeIdx1))
+console.log(removeAt(arr2, removeIdx2))
+console.log(removeAt(arr3, removeIdx3))
 /* 
 Given an array, move the minimum value to the front in-place
 return the array after done.
@@ -92,12 +94,6 @@ function minToFront(nums) {
 console.log(minToFront(nums1),expectedB1)
 console.log(minToFront(nums2),expectedB2)
 console.log(minToFront(nums3),expectedB3)
-
-
-
-
-
-
 
 
 
