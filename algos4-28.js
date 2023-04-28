@@ -70,31 +70,31 @@ After 4 rotations it is back to it's original order again.
 /**
    * Rotates the array items to the right "k" times.
    */
-// function rotate(nums, k) {
-//     k = k % nums.length;
-//     if (k === 0){
-//         return nums;
-//     }
-//     var temp;
-//     for (var i = k ; i > 0 ; i--){
-//         for (var j = nums.length-1 ; j > 0; j--){
-//             temp = nums[j];
-//             nums[j] = nums[j-1];
-//             nums[j-1] = temp;
-//         }
-//     }
-//     return nums;
-// }
+function rotate(nums, k) {
+    k = k % nums.length;
+    if (k === 0){
+        return nums;
+    }
+    var temp;
+    for (var i = k ; i > 0 ; i--){
+        for (var j = nums.length-1 ; j > 0; j--){
+            temp = nums[j];
+            nums[j] = nums[j-1];
+            nums[j-1] = temp;
+        }
+    }
+    return nums;
+}
 
 console.log(rotate(nums1, k1), expected1)
 console.log(rotate(nums2, k2), expected2)
 console.log(rotate(nums3, k3), expected3)
 console.log(rotate(nums4, k4), expected4)
 
-function rotate(nums, k) {
-    k = k % nums.length;
-    const numsToRotate = nums.splice(nums.length-k, k);
-    nums.splice(0, 0, ...numsToRotate);
-    return nums;
-}
+// function rotate(nums, k) {
+//     k = k % nums.length;
+//     const numsToRotate = nums.splice(nums.length-k, k);
+//     nums.splice(0, 0, ...numsToRotate);
+//     return nums;
+// }
 
