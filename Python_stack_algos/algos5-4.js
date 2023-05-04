@@ -84,6 +84,7 @@ function encodeStr(str) {
     return retVal.length < str.length ? retVal : str; // return shorter of the two
 }
 
+
 function encodeStr(str) {
     if (str.length < 2){
         return str
