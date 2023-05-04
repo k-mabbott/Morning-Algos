@@ -84,6 +84,35 @@ function encodeStr(str) {
     return retVal.length < str.length ? retVal : str; // return shorter of the two
 }
 
+function encodeStr(str) {
+    if (str.length < 2){
+        return str
+    }
+    let temp = str[0]
+    let result = ""
+    let count = 1
+    for (let i = 1; i < str.length + 1; i++) {
+        if(temp == str[i]){
+            count++
+        }
+        else {
+            if (count == 1) {
+                result += (temp)
+            }
+            else if (count == 2) {
+                result += (temp + temp)
+            }
+            else {
+                result += (temp + count)
+            }
+            count = 1
+        }
+        temp = str[i]
+    }
+    return result
+    }
+
+
 
 // ---------------------------------------Not working------------------------
 function encodeStr(str) {
