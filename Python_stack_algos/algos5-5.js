@@ -21,7 +21,7 @@ const expected4 = false;
 const str5 = "abba"
 const expected5 = true;
 
-
+//SOLUTION 1
 function isPalindrome(str) {
     // Your code here
     for (var i=0; i<str.length/2; i++){
