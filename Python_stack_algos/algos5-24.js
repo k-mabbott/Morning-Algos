@@ -49,12 +49,12 @@ function fibonacci(num) {
   } //         
 
 
-console.log(fibonacci(num1)); // 0
-console.log(fibonacci(num2)); // 1
-console.log(fibonacci(num3)); // 1
-console.log(fibonacci(num4)); // 2
-console.log(fibonacci(num5)); // 3
-console.log(fibonacci(num6)); // 21
+// console.log(fibonacci(42)); // 0
+// console.log(fibonacci(num2)); // 1
+// console.log(fibonacci(num3)); // 1
+// console.log(fibonacci(num4)); // 2
+// console.log(fibonacci(num5)); // 3
+// console.log(fibonacci(num6)); // 21
 
 
 
@@ -76,19 +76,17 @@ function fibonacci1(num, memo={1: 1, 2: 1}) {
     if (num <= 0){
     return 0
     }
-    // if(memo[num]) return memo[num]
-    // memo[num] = fibonacci1(num - 1, memo) + fibonacci1(num - 2, memo);
     memo[num] = memo[num] || fibonacci1(num - 1, memo) + fibonacci1(num - 2, memo);
     return memo[num]
 }
 
-console.log(fibonacci1(num1)); // 0
-console.log(fibonacci1(num2)); // 1
-console.log(fibonacci1(num3)); // 1
-console.log(fibonacci1(num4)); // 2
-console.log(fibonacci1(num5)); // 3
-console.log(fibonacci1(num6)); // 21
-console.log(fibonacci1(12)); // 21
-console.log(fibonacci1(5)); // 21
+console.log(fibonacci1(42)); // 0
+// console.log(fibonacci1(num2)); // 1
+// console.log(fibonacci1(num3)); // 1
+// console.log(fibonacci1(num4)); // 2
+// console.log(fibonacci1(num5)); // 3
+// console.log(fibonacci1(num6)); // 21
+// console.log(fibonacci1(12)); // 21
+// console.log(fibonacci1(5)); // 21
   /*****************************************************************************/
   
