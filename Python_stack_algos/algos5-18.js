@@ -27,6 +27,7 @@ function dedupeSorted(sortedNums) {
     return [...new Set(sortedNums)]
 }
 
+
 console.log(dedupeSorted(nums1)); // [1]
 console.log(dedupeSorted(nums2)); // [1, 2, 3]
 console.log(dedupeSorted(nums3)); // [7, 28, 56]
