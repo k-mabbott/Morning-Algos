@@ -73,7 +73,7 @@ function interleaveArrays(arr1, arr2) {
         result.push(arr2[ind])
     }
     result.push(...longer.slice(shorter.length))
-    return result
+    return result;
 }
 
 console.log(interleaveArrays(arrA1, arrB1)); //  [1, "a", 2, "b", 3, "c"];
