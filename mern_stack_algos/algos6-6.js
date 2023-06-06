@@ -40,7 +40,7 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 function selectionSort(numbers = []) {
     if (numbers.length < 2) return numbers;
     let min;
-    let mindex
+    let mindex;
     for (let i = 0; i < numbers.length-1; i++) {
         mindex = i;
         min = numbers[mindex];
