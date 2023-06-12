@@ -55,6 +55,7 @@ function diagonalDifference(sqrMatrix) {
     return Math.abs(diag1-diag2);
 }
 
+
 console.log(diagonalDifference(squareMatrix1), 'expected:', expected1)
 console.log(diagonalDifference(squareMatrix2), 'expected:', expected2)
 
