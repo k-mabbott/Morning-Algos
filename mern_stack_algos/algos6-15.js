@@ -116,30 +116,81 @@ const expected05 = [
  *    this context means the numbers whose indexes are one after the other
  *    only.
  */
-function findConsecutiveSums(numbers, targetSum) {
+// function findConsecutiveSums(numbers, targetSum) {
     
-    const res = []
-    let total
-    for (let i = 0; i < numbers.length; i++) {
-        total = 0
-        let j = i;
-        while(total <= targetSum  ) {
-            total += numbers[j];
-            if (total === targetSum){
-                res.push(numbers.slice(i,j+1))
-            }
-            j++;
-        }
+//     const res = []
+//     let total
+//     for (let i = 0; i < numbers.length; i++) {
+//         total = 0
+//         let j = i;
+//         while(total <= targetSum  ) {
+//             total += numbers[j];
+//             if (total === targetSum){
+//                 res.push(numbers.slice(i,j+1))
+//             }
+//             j++;
+//         }
         
-    }
-    return res
-}
+//     }
+//     return res
+// }
 
-console.log(findConsecutiveSums(numbers01, sum1), 'expected', expected01)
-console.log(findConsecutiveSums(numbers02, sum2), 'expected', expected02)
-console.log(findConsecutiveSums(numbers03, sum3), 'expected', expected03)
-console.log(findConsecutiveSums(numbers04, sum4), 'expected', expected04)
-// console.log(findConsecutiveSums(numbers05, sum5), 'expected', expected05)
+// console.log(findConsecutiveSums(numbers01, sum1), 'expected', expected01)
+// console.log(findConsecutiveSums(numbers02, sum2), 'expected', expected02)
+// console.log(findConsecutiveSums(numbers03, sum3), 'expected', expected03)
+// console.log(findConsecutiveSums(numbers04, sum4), 'expected', expected04)
+// // console.log(findConsecutiveSums(numbers05, sum5), 'expected', expected05)
 
 
 /*****************************************************************************/
+// sliding window
+// Assume there are all positive numbers or all negative numbers
+function findConsecutiveSumsKen(numbers, targetSum) {
+    const absTargetSum = Math.abs(targetSum);
+    let start = 0;
+    let end = 0;
+    let sum = 0;
+    const res = [];
+
+    while (end < numbers.length && start <= end) {
+        if (sum >= absTargetSum) {
+            if (sum == absTargetSum) res.push(numbers.slice(start, end));
+            sum -= Math.abs(numbers[start]);
+            start++;
+            continue;
+        }
+        sum += Math.abs(numbers[end]);
+        end++;
+    }
+    return res;
+}
+
+function findConsecutiveSumsDanny(numbers, targetSum) {
+    const result = [];
+    let i = 0;
+    let j = 1;
+
+    while (j < numbers.length) {
+        let sum = numbers[i];
+        const possible = [sum];
+
+        while (j < numbers.length && Math.abs(sum) <= Math.abs(targetSum)) {
+            sum += numbers[j];
+            possible.push(numbers[j]);
+            if (sum === targetSum) {
+                result.push([...possible]);
+            }
+            j++;
+        }
+        i++;
+        j = i + 1;
+    }
+    return result;
+}
+
+console.log(findConsecutiveSumsDanny(numbers01, sum1), 'expected', expected01)
+console.log(findConsecutiveSumsDanny(numbers02, sum2), 'expected', expected02)
+console.log(findConsecutiveSumsDanny(numbers03, sum3), 'expected', expected03)
+console.log(findConsecutiveSumsDanny(numbers04, sum4), 'expected', expected04)
+console.log(findConsecutiveSumsDanny(numbers05, sum5), 'expected', expected05)
+
