@@ -50,21 +50,96 @@ function allNonConsecutive(sortedNumbers) {
     return output
 }
 
-console.log(allNonConsecutive(numbers1), 'Expected' , expected1)
-console.log(allNonConsecutive(numbers2), 'Expected' , expected2)
-console.log(allNonConsecutive(numbers3), 'Expected' , expected3)
+// console.log(allNonConsecutive(numbers1), 'Expected' , expected1)
+// console.log(allNonConsecutive(numbers2), 'Expected' , expected2)
+// console.log(allNonConsecutive(numbers3), 'Expected' , expected3)
 
 /*****************************************************************************/
 
-// function allNonConsecutive1(sortedNumbers) {
-//     const output = []
-//     for (let i = 1; i < sortedNumbers.length; i++) {
-//         if (sortedNumbers[i-1] + 1 !== sortedNumbers[i]){
-//             output.push({i:i, n:sortedNumbers[i]})
-//         }
-//     }
-//     return output
-// }
+function allNonConsecutive1(sortedNumbers) {
+    const output = []
+    for (let i = 1; i < sortedNumbers.length; i++) {
+        if (sortedNumbers[i-1] + 1 !== sortedNumbers[i]){
+            output.push({i:i, n:sortedNumbers[i]})
+        }
+    }
+    return output
+}
 // console.log(allNonConsecutive1(numbers1), 'Expected' , expected1)
 // console.log(allNonConsecutive1(numbers2), 'Expected' , expected2)
 // console.log(allNonConsecutive1(numbers3), 'Expected' , expected3)
+
+
+const numbers01 = [2, 5, 3, 6, 7, 23, 12];
+const sum1 = 16;
+const expected01 = [
+  [2, 5, 3, 6],
+  [3, 6, 7],
+];
+
+const numbers02 = [];
+const sum2 = 5;
+const expected02 = [];
+
+const numbers03 = [10, 15, 20, 35, 30];
+const sum3 = 5;
+const expected03 = [];
+
+// Bonus:
+const numbers04 = [2, 5, 3, 6, 7, 0, 0, 23, 12];
+const sum4 = 16;
+const expected04 = [
+  [2, 5, 3, 6],
+  [3, 6, 7],
+  [3, 6, 7, 0],
+  [3, 6, 7, 0, 0],
+];
+
+// Bonus:
+const numbers05 = [-2, -5, -3, -6, -7, -0, -0, -23, -12];
+const sum5 = -16;
+const expected05 = [
+  [-2, -5, -3, -6],
+  [-3, -6, -7],
+  [-3, -6, -7, -0],
+  [-3, -6, -7, -0, -0],
+];
+
+/**
+ * Finds all the sets of consecutive numbers that sum to the given target sum.
+ * - Time: O(?).
+ * - Space: O(?).
+ * @param {Array<number>} numbers Unordered numbers.
+ * @param {number} targetSum
+ * @returns {Array<Array<number>>} 2d array where each nested array is a set of
+ *    consecutive numbers that add up to the given targetSum. Consecutive in
+ *    this context means the numbers whose indexes are one after the other
+ *    only.
+ */
+function findConsecutiveSums(numbers, targetSum) {
+    
+    const res = []
+    let total
+    for (let i = 0; i < numbers.length; i++) {
+        total = 0
+        let j = i;
+        while(total <= targetSum  ) {
+            total += numbers[j];
+            if (total === targetSum){
+                res.push(numbers.slice(i,j+1))
+            }
+            j++;
+        }
+        
+    }
+    return res
+}
+
+console.log(findConsecutiveSums(numbers01, sum1), 'expected', expected01)
+console.log(findConsecutiveSums(numbers02, sum2), 'expected', expected02)
+console.log(findConsecutiveSums(numbers03, sum3), 'expected', expected03)
+console.log(findConsecutiveSums(numbers04, sum4), 'expected', expected04)
+// console.log(findConsecutiveSums(numbers05, sum5), 'expected', expected05)
+
+
+/*****************************************************************************/
