@@ -32,17 +32,13 @@ const expected2 =
  * @returns {string} A string formatted as a SQL insert statement where the
  *    columns and values are extracted from columnValuePairs.
  */
+
 function insert(tableName, columnValuePairs) {
     const columns = Object.keys(columnValuePairs).join(", ");
-    console.log(Object.keys(columnValuePairs))
     const valList = Object.values(columnValuePairs)
     let values = []
     for (let val of valList) {
-        if (isNaN(val)) {
-            values.push(`'${val}'`)
-        } else {
-            values.push(val)
-        }
+        isNaN(val) ? values.push(`'${val}'`) : values.push(val)
     }
     return res = `INSERT INTO ${tableName} (${columns}) VALUES (${values.join(', ')})`
 }
