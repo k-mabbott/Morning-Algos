@@ -44,3 +44,6 @@ function insert(tableName, columnValuePairs) {
 }
 console.log(insert(table, insertData1), ' || expected => ', expected1)
 console.log(insert(table, insertData2), ' || expected => ', expected2)
+
+
+
