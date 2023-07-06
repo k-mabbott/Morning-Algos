@@ -49,13 +49,13 @@ class SLList {
      * @returns {SinglyLinkedList} This list.
     */
     addToBack(value) {
-        if(this.isEmpty()){
+        if (this.isEmpty()) {
             this.head = new SLNode(value)
             return this;
         }
         let runner = this.head;
 
-        while (runner.next != null){
+        while (runner.next != null) {
             runner = runner.next;
         }
         runner.next = new SLNode(value)
@@ -72,13 +72,17 @@ class SLList {
      *    or null when the end of the list has been reached.
      * @returns {SLList} This list.
      */
-    addToBackRecursive(data, runner = this.head) {
+    // addToBackRecursive(data, runner = this.head) {
 
-        if(runner == null){
-            return this;
-        }
-        
-    }
+    //     if (runner == null) {
+    //         return this;
+    //     }
+    //     if (runner.next === null) {
+    //         runner.next = newSLNode(data);
+    //         return this;
+    //     }
+    //     return this.addToBackRecursive(data, runner.next);
+    // }
 
     /**
      * Creates a new node with the given data and inserts that node at the front
@@ -90,10 +94,10 @@ class SLList {
      */
     addToFront(value) {
         const newNode = new SLNode(value)
-        if(this.isEmpty()){
-            this.head = newNode 
+        if (this.isEmpty()) {
+            this.head = newNode
             return this;
-        } 
+        }
         const prevHead = this.head;
         this.head = newNode;
         newNode.next = prevHead;
@@ -108,7 +112,7 @@ class SLList {
      * @returns {any} The data from the removed node.
      */
     removeHead() {
-        if(this.isEmpty()){
+        if (this.isEmpty()) {
             return this;
         }
         const nextHead = this.head.next;
@@ -125,16 +129,16 @@ class SLList {
     average() {
         let sum = 0;
         let count = 0;
-        if(this.isEmpty()){
+        if (this.isEmpty()) {
             return this;
         }
         let runner = this.head;
-        while(runner !== null) {
+        while (runner !== null) {
             sum += runner.value;
             count++;
             runner = runner.next
         }
-        return sum/count;
+        return sum / count;
     }
 
     /**
@@ -144,15 +148,15 @@ class SLList {
      * @returns {any} The data from the node that was removed.
      */
     removeBack() {
-        if(this.isEmpty()){
+        if (this.isEmpty()) {
             return this;
         }
         let runner = this.head;
-        if (runner.next == null){
-            this.head=null;
+        if (runner.next == null) {
+            this.head = null;
             return this;
         }
-        while(runner.next.next !== null) {
+        while (runner.next.next !== null) {
             runner = runner.next
         }
         runner.next = null;
@@ -167,12 +171,12 @@ class SLList {
      * @returns {boolean}
      */
     contains(val) {
-        if(this.isEmpty()){
+        if (this.isEmpty()) {
             return false;
         }
         let runner = this.head;
-        while (runner !== null){
-            if (runner.value == val){
+        while (runner !== null) {
+            if (runner.value == val) {
                 return true;
             }
             runner = runner.next;
@@ -191,17 +195,136 @@ class SLList {
      */
     containsRecursive(val, current = this.head) {
         // Base case
-        if (current == null ){
+        if (current == null) {
             return false;
         }
-        
-        if (current.value == val ){
+
+        if (current.value == val) {
             return true;
         }
 
         return this.containsRecursive(val, current.next);
     }
 
+    /*
+  * EXTRA
+  * Recursively finds the maximum integer data of the nodes in this list.
+  * - Time: O(?).
+  * - Space: O(?).
+  * @param {ListNode} runner The start or current node during traversal, or null
+  *    when the end of the list is reached.
+  * @param {ListNode} maxNode Keeps track of the node that contains the current
+  *    max integer as it's data.
+  * @returns {?number} The max int or null if none.
+  */
+    recursiveMax(runner = this.head, maxNode = this.head) {
+
+    }
+
+    //****** Thursday *******
+
+    /**
+     * Retrieves the data of the second to last node in this list.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @returns {any} The data of the second to last node or null if there is no
+     *    second to last node.
+     */
+    secondToLast() {
+        if (this.isEmpty() || this.head.next === null ) {
+            return this;
+        }
+        let runner = this.head;
+        while( runner.next.next !== null ){
+            runner = runner.next;
+        }
+        return runner.value;
+    }
+
+    /**
+     * Removes the node that has the matching given val as it's data.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @param {any} val The value to compare to the node's data to find the
+     *    node to be removed.
+     * @returns {boolean} Indicates if a node was removed or not.
+     */
+    removeVal(val) {
+        if (this.isEmpty()) {
+            return false;
+        }
+        let runner = this.head;
+
+        if (runner.value === val) {
+            this.head = runner.next;
+            return true;
+        }
+
+        while (runner.next !== null) {
+            if (runner.next.value === val) {
+                runner.next = runner.next.next;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // EXTRA
+    /**
+     * Inserts a new node before a node that has the given value as its data.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @param {any} newVal The value to use for the new node that is being added.
+     * @param {any} targetVal The value to use to find the node that the newVal
+     *    should be inserted in front of.
+     * @returns {boolean} To indicate whether the node was pre-pended or not.
+     */
+    prepend(newVal, targetVal) {
+        if (this.isEmpty()) {
+            return false;
+        }
+    }
+
+    //****** Friday *******
+    /**
+     * Concatenates the nodes of a given list onto the back of this list.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @param {SinglyLinkedList} addList An instance of a different list whose
+     *    whose nodes will be added to the back of this list.
+     * @returns {SinglyLinkedList} This list with the added nodes.
+     */
+    concat(addList) {
+        if (this.isEmpty()) {
+            return false;
+        }
+
+    }
+
+    /**
+     * Finds the node with the smallest data and moves that node to the front of
+     * this list.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @returns {SinglyLinkedList} This list.
+     */
+    moveMinToFront() {
+
+    }
+
+    // EXTRA
+    /**
+     * Splits this list into two lists where the 2nd list starts with the node
+     * that has the given value.
+     * splitOnVal(5) for the list (1=>3=>5=>2=>4) will change list to (1=>3)
+     * and the return value will be a new list containing (5=>2=>4)
+     * - Time: O(?).
+     * - Space: O(?).
+     * @param {any} val The value in the node that the list should be split on.
+     * @returns {SinglyLinkedList} The split list containing the nodes that are
+     *    no longer in this list.
+     */
+    splitOnVal(val) { }
 
     // Here's a gimme: This will print the contents of a singly linked list.
     printList() {
@@ -227,13 +350,13 @@ Below commented code depends on insertAtBack method to be completed,
 after completing it, uncomment the code.
 */
 let myList = new SLList();
-myList.addToBack(1).addToBack(2).addToBack(3).addToBack(4).addToBack(5).addToBack(-8).addToBack(-6).addToFront(9).removeHead().removeBack();
+myList.addToBack(1).addToBack(2).addToBack(3).addToBack(4).addToBack(5).addToBack(-8).addToBack(-6).addToFront(9).removeHead().removeBack().secondToLast();
 myList.printList();
 
 // console.log(myList.average());
 
 // console.log(myList.contains(4));
-console.log(myList.containsRecursive(2));
+// console.log(myList.containsRecursive(2));
 
 
   // const singleNodeList = new SinglyLinkedList().addToBack([1]);
