@@ -231,11 +231,11 @@ class SLList {
      *    second to last node.
      */
     secondToLast() {
-        if (this.isEmpty() || this.head.next === null ) {
+        if (this.isEmpty() || this.head.next === null) {
             return this;
         }
         let runner = this.head;
-        while( runner.next.next !== null ){
+        while (runner.next.next !== null) {
             runner = runner.next;
         }
         return runner.value;
@@ -295,9 +295,17 @@ class SLList {
      * @returns {SinglyLinkedList} This list with the added nodes.
      */
     concat(addList) {
-        if (this.isEmpty()) {
-            return false;
+        if (addList.isEmpty()) {
+            return this;
+        } if (this.isEmpty()) {
+            this.addToFront(addList.head);
+            return this;
         }
+        while (runner.ext !== null) {
+            runner = runner.next;
+        }
+        runner.next = addList.head;
+        return this;
 
     }
 
@@ -309,7 +317,17 @@ class SLList {
      * @returns {SinglyLinkedList} This list.
      */
     moveMinToFront() {
-
+        if (this.isEmpty()) {
+            return this;
+        }
+        let runner = this.head;
+        let min = runner.value;
+        while (runner !== null) {
+            if (runner.value < min) {
+                min = runner.value;
+            } runner = runner.next
+        } this.removeBack(min);
+        this.addToFront(min);
     }
 
     // EXTRA
@@ -324,7 +342,27 @@ class SLList {
      * @returns {SinglyLinkedList} The split list containing the nodes that are
      *    no longer in this list.
      */
-    splitOnVal(val) { }
+    splitOnVal(val) {
+        if (this.isEmpty()) {
+            return this;
+        }
+        let newList = new SLList();
+        if(this.head.value === val){
+
+            newList.head = this.head;
+            this.removeHead();
+            return newList;
+        }
+        let runner = this.head;
+        while (runner.next !== null) {
+            if (runner.next.val === val) {
+                let newList = new SLList();
+                newList.head = runner.next;
+                runner.next = null;
+                return newList;
+            } runner = runner.next
+        } return newList;
+    }
 
     // Here's a gimme: This will print the contents of a singly linked list.
     printList() {
@@ -341,7 +379,6 @@ class SLList {
         console.log(toPrint);
         return this;
     }
-
 }
 
 /******************************************************************* 
