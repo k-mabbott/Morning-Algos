@@ -63,8 +63,7 @@ class BinarySearchTree {
         if (this.isEmpty()){
             return this
         }
-        while(current.left != null)
-        {
+        while(current.left != null){
             current = current.left;
         }
     return current.data;
@@ -82,8 +81,7 @@ class BinarySearchTree {
         if (this.isEmpty()){
             return this;
         }
-        while(current.right != null)
-        {
+        while(current.right != null){
             current = current.right;
         }
     return current.data;
