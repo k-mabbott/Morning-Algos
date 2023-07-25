@@ -15,7 +15,9 @@ class Queue {
      * @param {any} item The new item to add to the back.
      * @returns {number} The new size of this queue.
      */
-    enqueue(item) {}
+    enqueue(item) {
+        this.items.push(item);
+    }
 
     /**
      * Removes and returns the first item of this queue.
@@ -24,7 +26,9 @@ class Queue {
      * - Space: O(1) constant.
      * @returns {any} The first item or undefined if empty.
      */
-    dequeue() {}
+    dequeue() {
+        return this.items.shift();
+    }
 
     /**
      * Retrieves the first item without removing it.
@@ -32,7 +36,9 @@ class Queue {
      * - Space: O(1) constant.
      * @returns {any} The first item or undefined if empty.
      */
-    front() {}
+    front() {
+        return this.items[0];
+    }
 
     /**
      * Returns whether or not this queue is empty.
@@ -40,7 +46,13 @@ class Queue {
      * - Space: O(1) constant.
      * @returns {boolean}
      */
-    isEmpty() {}
+    isEmpty() {
+        // if(this.length < 1){
+        //     return true;
+        // }
+        // return false;
+        return this.items.length < 1;
+    }
 
     /**
      * Retrieves the size of this queue.
@@ -48,7 +60,9 @@ class Queue {
      * - Space: O(1) constant.
      * @returns {number} The length.
      */
-    size() {}
+    size() {
+        return this.items.length;
+    }
 
     /**
      * Logs the items of this queue.
@@ -75,7 +89,18 @@ class Queue {
    *    in the same order.
    */
     compareQueues(q2){
-        //Code goes here
+        if(this.size() != q2.size()){
+            return false;
+        }
+        let arr = true;
+        for (let i = 0; i < q2.items.length; i++) {
+            if(arr && this.front() != q2.front()){
+                arr = false;
+            }
+            this.enqueue(this.dequeue());
+            q2.enqueue(q2.dequeue());
+        }
+        return arr
     }
 
     /**
@@ -120,7 +145,9 @@ class QueueNode {
      * - Space: O(1) constant.
      * @returns {boolean} Indicates if the list is empty.
      */
-    isEmpty() {}
+    isEmpty() {
+        return this.size < 1;
+    }
 
     /**
      * Adds a given val to the back of the queue.
@@ -129,14 +156,39 @@ class QueueNode {
      * @param {any} val
      * @returns {number} The new size of the queue.
      */
-    enqueue(val) {}
+    enqueue(val) {
+        let node = new QueueNode(val);
+
+        // if(!this.isEmpty()){
+        //     this.tail.next = node;
+        
+        // }
+
+        if(this.isEmpty()){
+            this.top = node;
+            this.tail = node;
+        } else {
+            this.tail.next = node;
+            this.tail = node;
+            this.size += 1;
+        }
+        return this.size;
+    }
 
     /**
      * - Time: O(1) constant.
      * - Space: O(1) constant.
      * @returns {any} The removed item.
      */
-    dequeue() {}
+    dequeue() {
+        if(this.isEmpty){
+            return undefined;
+        }
+        const top = this.top;
+        this.top = top.next;
+        this.size -= 1;
+        return top;
+    }
 
     /**
      * Retrieves the first item without removing it.
@@ -144,7 +196,9 @@ class QueueNode {
      * - Space: O(1) constant.
      * @returns {any} The first item.
      */
-    front() {}
+    front() {
+        return this.top;  //.data?
+    }
 
     /**
      * Determines if the given item is in the queue.
@@ -153,5 +207,61 @@ class QueueNode {
      * @param {any} searchVal
      * @returns {boolean}
      */
-    contains(searchVal) {}
+    contains(searchVal) {
+        for (let i = 0; i < this.items.length; i++) {
+            if( this.items[i] == searchVal ){
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
+
+let queue = new Queue();
+let queue2 = new Queue();
+console.log(queue.isEmpty());
+queue.enqueue(1);
+queue.enqueue(2);
+queue.enqueue(3);
+queue.enqueue(4);
+queue2.enqueue(1);
+queue2.enqueue(2);
+queue2.enqueue(3);
+queue2.enqueue(4);
+queue.print();
+console.log(queue.compareQueues(queue2), "=> Should be same");
+queue.print();
+
+queue2.enqueue(4);
+console.log(queue.compareQueues(queue2), "=> Should be diff size");
+
+queue.enqueue(3);
+console.log(queue.compareQueues(queue2), "=> Should be same size diff vals");
+queue.print();
+queue2.print();
+
+
+queue.print();
+console.log(queue.size());
+console.log(queue.front());
+console.log(queue.dequeue());
+console.log(queue.size());
+console.log(queue.isEmpty());
+console.log(queue.front());
+console.log(queue.dequeue());
+
+
+// const linkedqueue = new LinkedListQueue();
+// console.log(linkedqueue.isEmpty())
+// linkedqueue.enqueue(1)
+// linkedqueue.enqueue(2)
+// linkedqueue.enqueue(3)
+// linkedqueue.enqueue(4)
+// console.log(linkedqueue.isEmpty())
+// // linkedqueue.print()
+// linkedqueue.front()
+// linkedqueue.dequeue()
+// // linkedqueue.print()
+// linkedqueue.contains(2)
+
