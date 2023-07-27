@@ -136,6 +136,36 @@ class Queue {
         }
         return res;
     }
+    
+    /**
+     * Determines whether the sum of the left half of the queue items is equal to
+     * the sum of the right half. Avoid indexing the queue items directly via
+     * bracket notation, use the queue methods instead for practice.
+     * Use no extra array or objects.
+     * The queue should be returned to it's original order when done.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @returns {boolean} Whether the sum of the left and right halves are equal.
+     */
+    isSumOfHalvesEqual() {
+        if(this.isEmpty()) return false;
+        let rightSum = 0;
+        let leftSum = 0;
+        const mid = Math.ceil(this.items.length/2)
+        for (let i = 0; i < this.items.length; i++) {
+            const val = this.dequeue();
+            if(i < mid){
+                leftSum += val;
+                
+            } else {
+                rightSum += val;
+            }
+            this.enqueue(val);
+        }
+        console.log("Left", leftSum, rightSum)
+        return leftSum === rightSum;
+    }
+
 }
 
 /* EXTRA: Rebuild the above class using a linked list instead of an array. */
@@ -260,6 +290,7 @@ queue.enqueue(1);
 queue.enqueue(2);
 queue.enqueue(2);
 queue.enqueue(1);
+// queue.enqueue(4);
 queue2.enqueue(1);
 queue2.enqueue(2);
 queue2.enqueue(3);
@@ -278,7 +309,10 @@ queue2.enqueue(4);
 
 // console.log(queue.isPalindrome())
 // console.log(queue2.isPalindrome())
-
+console.log(queue.isSumOfHalvesEqual())
+console.log(queue2.isSumOfHalvesEqual())
+queue.print();
+queue2.print();
 
 // queue.print();
 // console.log(queue.size());
@@ -290,16 +324,16 @@ queue2.enqueue(4);
 // console.log(queue.dequeue());
 
 
-const linkedqueue = new LinkedListQueue();
-console.log(linkedqueue.isEmpty())
-linkedqueue.enqueue(1)
-linkedqueue.enqueue(2)
-linkedqueue.enqueue(3)
-linkedqueue.enqueue(4)
-console.log(linkedqueue.isEmpty())
-linkedqueue.print()
-console.log(linkedqueue.front())
-console.log(linkedqueue.dequeue())
-linkedqueue.print()
-console.log(linkedqueue.contains(5))
+// const linkedqueue = new LinkedListQueue();
+// console.log(linkedqueue.isEmpty())
+// linkedqueue.enqueue(1)
+// linkedqueue.enqueue(2)
+// linkedqueue.enqueue(3)
+// linkedqueue.enqueue(4)
+// console.log(linkedqueue.isEmpty())
+// linkedqueue.print()
+// console.log(linkedqueue.front())
+// console.log(linkedqueue.dequeue())
+// linkedqueue.print()
+// console.log(linkedqueue.contains(5))
 
