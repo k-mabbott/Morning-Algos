@@ -1,3 +1,6 @@
+// Import our stack data structure to use in this file.
+const { Stack } = require("../Stack/Stack");
+
 /**
  * Class to represent a queue using an array to store the queued items.
  * Follows a FIFO (First In First Out) order where new items are added to the
@@ -167,24 +170,46 @@ class Queue {
         // Return whether the queue is a palindrome or not.
         return isPalin;
     }
+
+    /**
+     * Determines whether the sum of the left half of the queue items is equal to
+     * the sum of the right half. Avoid indexing the queue items directly via
+     * bracket notation, use the queue methods instead for practice.
+     * Use no extra array or objects.
+     * The queue should be returned to it's original order when done.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @returns {boolean} Whether the sum of the left and right halves are equal.
+     */
+
+    isSumOfHalvesEqual() {
+        //Solution goes here
+    }
+
 }
 const q1 = new Queue();
 const q2 = new Queue();
 
 q1.enqueue(1)
-q1.enqueue(3)
+q1.enqueue(2)
 q1.enqueue(3);
-q1.print();
-q1.dequeue()
-q1.print();
-console.log(q1.front())
-console.log(q1.size())
+q1.enqueue(3)
+q1.enqueue(2)
+q1.enqueue(1);
+q1.print(); // 1 2 3 3 2 1
+// q1.dequeue()
+// q1.print();
+console.log(q1.front()) //1
+console.log(q1.size()) //6
+console.log(q1.isPalindrome()); //true
+console.log(q1.isSumOfHalvesEqual()) //?
 
-// q2.enqueue(1)
-// q2.enqueue(3)
-// q2.enqueue(3)
-// q2.enqueue(4);
-// q2.print();
+q2.enqueue(1)
+q2.enqueue(3)
+q2.enqueue(3)
+q2.enqueue(4);
+q2.print(); // 1 3 3 4
+console.log(q1.compareQueues(q2));
 
 /* EXTRA: Rebuild the above class using a linked list instead of an array. */
 /* 
@@ -210,44 +235,116 @@ class LinkedListQueue {
     }
 
     /**
-     * - Time: O(1) constant.
-     * - Space: O(1) constant.
-     * @returns {boolean} Indicates if the list is empty.
-     */
-    isEmpty() { }
+       * Determines if the queue is empty.
+       * - Time: O(1) constant.
+       * - Space: O(1) constant.
+       * @returns {boolean} Indicates if the queue is empty.
+       */
+    isEmpty() {
+        // The queue is empty if the 'top' points to null (the first node is null).
+        return this.top === null;
+    }
 
     /**
-     * Adds a given val to the back of the queue.
+     * Adds a given value to the back of the queue.
      * - Time: O(1) constant.
      * - Space: O(1) constant.
-     * @param {any} val
+     * @param {any} val The value to be added to the back of the queue.
      * @returns {number} The new size of the queue.
      */
-    enqueue(val) { }
+    enqueue(val) {
+        // Create a new node with the given value.
+        const newNode = new QueueNode(val);
+
+        // If the queue is empty, both 'top' and 'tail' should point to the new node.
+        if (this.isEmpty()) {
+            this.top = newNode;
+            this.tail = newNode;
+        } else {
+            // If the queue is not empty, the current 'tail' node's next should point to the new node,
+            // and the 'tail' should be updated to point to the new node (now the new tail).
+            this.tail.next = newNode;
+            this.tail = newNode;
+        }
+
+        // Increment the 'size' of the queue.
+        this.size++;
+        // Return the new size of the queue.
+        return this.size;
+    }
 
     /**
+     * Removes and returns the first item from the front of the queue.
      * - Time: O(1) constant.
      * - Space: O(1) constant.
-     * @returns {any} The removed item.
+     * @returns {any} The removed item from the front of the queue or undefined if the queue is empty.
      */
-    dequeue() { }
+    dequeue() {
+        // If the queue is empty, there is nothing to dequeue, return undefined.
+        if (this.isEmpty()) {
+            return undefined;
+        }
+
+        // The 'removedItem' is the 'top' node's data (the data to be removed from the front of the queue).
+        const removedItem = this.top.data;
+
+        // Move the 'top' to the next node, effectively removing the first node (front) from the queue.
+        this.top = this.top.next;
+
+        // If the queue is now empty (i.e., the 'top' is null), update the 'tail' to also be null.
+        if (this.top === null) {
+            this.tail = null;
+        }
+
+        // Decrement the 'size' of the queue.
+        this.size--;
+        // Return the removed item from the front of the queue.
+        return removedItem;
+    }
 
     /**
-     * Retrieves the first item without removing it.
+     * Retrieves the first item from the front of the queue without removing it.
      * - Time: O(1) constant.
      * - Space: O(1) constant.
-     * @returns {any} The first item.
+     * @returns {any} The first item from the front of the queue or undefined if the queue is empty.
      */
-    front() { }
+    front() {
+        // If the queue is empty, there is nothing at the front to retrieve, return undefined.
+        if (this.isEmpty()) {
+            return undefined;
+        }
+
+        // The 'frontItem' is the 'top' node's data (the data at the front of the queue).
+        const frontItem = this.top.data;
+        // Return the first item from the front of the queue.
+        return frontItem;
+    }
 
     /**
      * Determines if the given item is in the queue.
-     * - Time: O(n) linear.
+     * - Time: O(n) linear, where n is the number of nodes in the queue (the size of the queue).
      * - Space: O(1) constant.
-     * @param {any} searchVal
-     * @returns {boolean}
+     * @param {any} searchVal The item to search for in the queue.
+     * @returns {boolean} Indicates if the item is found in the queue.
      */
-    contains(searchVal) { }
+    contains(searchVal) {
+        // Start from the 'top' node (front) of the queue.
+        let currentNode = this.top;
+
+        // Traverse through the queue nodes until the end (null is reached).
+        while (currentNode !== null) {
+            // If the current node's data matches the search value, return true (item is found in the queue).
+            if (currentNode.data === searchVal) {
+                return true;
+            }
+            // Move to the next node in the queue.
+            currentNode = currentNode.next;
+        }
+
+        // The item was not found in the queue, return false.
+        return false;
+    }
+
     /**
      * Logs the items of this queue.
      * - Time: O(n) linear, where n is the number of nodes in the queue (the size of the queue).
@@ -267,12 +364,83 @@ class LinkedListQueue {
             items.push(currentNode.data);
             currentNode = currentNode.next;
         }
+
         const str = items.join(" ");
         console.log(str);
         return str;
     }
-}
 
+}
 const llq1 = new LinkedListQueue();
 const llq2 = new LinkedListQueue();
 const llq3 = new LinkedListQueue();
+
+// console.log(llq1.isEmpty())
+// llq1.enqueue(1)
+// llq1.enqueue(2)
+// llq1.enqueue(3)
+// llq1.enqueue(4)
+// llq1.enqueue(5)
+// llq1.print()
+// console.log(llq1.dequeue())
+// console.log(llq1.dequeue())
+// console.log(llq1.dequeue())
+// console.log(llq1.dequeue())
+// console.log(llq1.dequeue())
+// console.log(llq1.dequeue())
+// llq1.print()
+// llq1.enqueue(1)
+// llq1.enqueue(2)
+// llq1.enqueue(3)
+// llq1.enqueue(4)
+// llq1.enqueue(5000)
+// console.log(llq1.front())
+// console.log(llq1.contains(500))
+
+/**
+ * Class to represent a Queue but is implemented using two stacks to store the
+ * queued items without using any other objects or arrays to store the items.
+ * Retains the FIFO (First in First Out) ordering when adding / removing items.
+ */
+class TwoStackQueue {
+    constructor() {
+        this.stack1 = new Stack();
+        this.stack2 = new Stack();
+    }
+
+    /**
+     * Adds a new item to the back of the queue.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @param {any} item To be added.
+     * @returns {number} The new number of items in the queue.
+     */
+    enqueue(item) { }
+
+    /**
+     * Removes the next item in the line / queue.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @returns {any} The removed item.
+     */
+    dequeue() { }
+}
+
+const two1 = new TwoStackQueue();
+const two2 = new TwoStackQueue();
+
+two1.enqueue(1);
+two1.enqueue(2);
+two1.enqueue(3);
+two1.enqueue(4);
+two1.enqueue(5);
+two1.enqueue(6);
+
+two1.dequeue();
+
+two2.enqueue(1);
+two2.enqueue(2);
+two2.enqueue(3);
+two2.enqueue(4);
+two2.enqueue(5);
+two2.enqueue(6);

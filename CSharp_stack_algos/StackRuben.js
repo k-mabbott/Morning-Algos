@@ -145,4 +145,8 @@ class LinkedListStack {
 }
 
 let emptyLLS = new LinkedListStack();
-let myListLLS = new LinkedListStack();
+let myListLLS = new LinkedListStack()
+
+
+
+module.exports = { Stack, LinkedListStack };
