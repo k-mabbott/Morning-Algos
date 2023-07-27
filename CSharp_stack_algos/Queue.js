@@ -115,13 +115,32 @@ class Queue {
    * @returns {boolean}
    */
     isPalindrome(){
-        //Code goes here
+        if(this.items.length < 1 ){
+            return false;
+        }
+        let stack = []
+        for (let i = 0; i < this.items.length; i++) {
+            const curr = this.dequeue()
+            stack.push(curr);
+            this.enqueue(curr);
+        }
+        let res = true;
+        for (let i = 0; i < this.items.length; i++) {
+            const curr = this.dequeue();
+            const temp = stack.pop();
+            // console.log("Curr =>", curr, "Temp =>", temp)
+            if (res && curr != temp){
+                res = false;
+            }
+            this.enqueue(curr);
+        }
+        return res;
     }
 }
 
 /* EXTRA: Rebuild the above class using a linked list instead of an array. */
 
-/* 
+/*
     In order to maintain an O(1) enqueue time complexity like .push with an array
     We add a tail to our linked list so we can go directly to the last node
 */
@@ -159,19 +178,13 @@ class QueueNode {
     enqueue(val) {
         let node = new QueueNode(val);
 
-        // if(!this.isEmpty()){
-        //     this.tail.next = node;
-        
-        // }
-
         if(this.isEmpty()){
             this.top = node;
-            this.tail = node;
         } else {
             this.tail.next = node;
-            this.tail = node;
-            this.size += 1;
         }
+        this.tail = node;
+        this.size += 1;
         return this.size;
     }
 
@@ -181,7 +194,7 @@ class QueueNode {
      * @returns {any} The removed item.
      */
     dequeue() {
-        if(this.isEmpty){
+        if(this.isEmpty()){
             return undefined;
         }
         const top = this.top;
@@ -208,60 +221,85 @@ class QueueNode {
      * @returns {boolean}
      */
     contains(searchVal) {
-        for (let i = 0; i < this.items.length; i++) {
-            if( this.items[i] == searchVal ){
+        let pointer = this.top;
+        if(pointer === null ) return false;
+        while (pointer != null) {
+            if( pointer.data == searchVal ){
                 return true;
             }
+            pointer = pointer.next;
         }
         return false;
+    }
+    print() {
+        if (this.isEmpty()) {
+            console.log("Queue is empty.");
+            return "Queue is empty.";
+        }
+
+        let currentNode = this.top;
+        const items = [];
+
+        while (currentNode !== null) {
+            items.push(currentNode.data);
+            currentNode = currentNode.next;
+        }
+        const str = items.join(" ");
+        console.log(str);
+        return str;
     }
 }
 
 
+
+
 let queue = new Queue();
 let queue2 = new Queue();
-console.log(queue.isEmpty());
+// console.log(queue.isEmpty());
 queue.enqueue(1);
 queue.enqueue(2);
-queue.enqueue(3);
-queue.enqueue(4);
+queue.enqueue(2);
+queue.enqueue(1);
 queue2.enqueue(1);
 queue2.enqueue(2);
 queue2.enqueue(3);
 queue2.enqueue(4);
-queue.print();
-console.log(queue.compareQueues(queue2), "=> Should be same");
-queue.print();
+// queue.print();
+// console.log(queue.compareQueues(queue2), "=> Should be same");
+// queue.print();
 
-queue2.enqueue(4);
-console.log(queue.compareQueues(queue2), "=> Should be diff size");
+// queue2.enqueue(4);
+// console.log(queue.compareQueues(queue2), "=> Should be diff size");
 
-queue.enqueue(3);
-console.log(queue.compareQueues(queue2), "=> Should be same size diff vals");
-queue.print();
-queue2.print();
+// queue.enqueue(3);
+// console.log(queue.compareQueues(queue2), "=> Should be same size diff vals");
+// queue.print();
+// queue2.print();
 
-
-queue.print();
-console.log(queue.size());
-console.log(queue.front());
-console.log(queue.dequeue());
-console.log(queue.size());
-console.log(queue.isEmpty());
-console.log(queue.front());
-console.log(queue.dequeue());
+// console.log(queue.isPalindrome())
+// console.log(queue2.isPalindrome())
 
 
-// const linkedqueue = new LinkedListQueue();
-// console.log(linkedqueue.isEmpty())
-// linkedqueue.enqueue(1)
-// linkedqueue.enqueue(2)
-// linkedqueue.enqueue(3)
-// linkedqueue.enqueue(4)
-// console.log(linkedqueue.isEmpty())
-// // linkedqueue.print()
-// linkedqueue.front()
-// linkedqueue.dequeue()
-// // linkedqueue.print()
-// linkedqueue.contains(2)
+// queue.print();
+// console.log(queue.size());
+// console.log(queue.front());
+// console.log(queue.dequeue());
+// console.log(queue.size());
+// console.log(queue.isEmpty());
+// console.log(queue.front());
+// console.log(queue.dequeue());
+
+
+const linkedqueue = new LinkedListQueue();
+console.log(linkedqueue.isEmpty())
+linkedqueue.enqueue(1)
+linkedqueue.enqueue(2)
+linkedqueue.enqueue(3)
+linkedqueue.enqueue(4)
+console.log(linkedqueue.isEmpty())
+linkedqueue.print()
+console.log(linkedqueue.front())
+console.log(linkedqueue.dequeue())
+linkedqueue.print()
+console.log(linkedqueue.contains(5))
 
