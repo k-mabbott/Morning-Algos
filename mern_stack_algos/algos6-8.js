@@ -72,3 +72,8 @@ function insertionSort(numbers = []) {
 console.log(insertionSort([9,3,6,1]))
 console.log(insertionSort(numbersRandomOrder))
 //[ 3, 6, 9, 1 ]
+
+
+let url = "https://pokeapi.co/api/v2/pokemon-species/125/"
+let res = url.split("/")
+console.log(res[res.length-2])
