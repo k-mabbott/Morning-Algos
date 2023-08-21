@@ -1,7 +1,7 @@
 /**
  * Nested Arrays
  */
- 
+
 const arr1 = [
     [2, 5, 8],
     [3, 6, 1],
