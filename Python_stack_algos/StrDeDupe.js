@@ -70,9 +70,24 @@ console.log(stringDedupe(str5),'    ||', expected5);
 
 
 
+function deleteNth(arr,n){
+  const res = []
+  const hash = {}
+  for(let i = 0; i < arr.length; i++){
+    if (hash.hasOwnProperty(arr[i])){
+      if( hash[arr[i]] < n ) {
+        res.push(arr[i]);
+        hash[arr[i]]++;
+      }
+    } else {
+      hash[arr[i]] = 1;
+      res.push(arr[i]);
+    }
+  }
+  return res;
+}
 
-
-
+console.log(deleteNth([20,37,20,21], 1)," [20,37,21]")
 
 
 
