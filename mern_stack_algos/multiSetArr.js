@@ -1,13 +1,13 @@
 /*
-  Union Sorted Arrays
+    Union Sorted Arrays
 
-  Efficiently combine two already-sorted multiset arrays
-  into a new sorted array containing the multiset union.
+    Efficiently combine two already-sorted multiset arrays
+    into a new sorted array containing the multiset union.
 
-  Unions by default will take the set of dupes
-  that has the highest occurrences from one array.
+    Unions by default will take the set of dupes
+    that has the highest occurrences from one array.
 
-  Venn Diagram Visualization (top) https://i.ytimg.com/vi/sdflTUW6gHo/maxresdefault.jpg
+    Venn Diagram Visualization (top) https://i.ytimg.com/vi/sdflTUW6gHo/maxresdefault.jpg
 */
 
 const numbers1A = [1, 2, 2, 2, 7];
@@ -30,8 +30,8 @@ const numbers5A = [];
 const numbers5B = [];
 const expected5 = [];
 /* 
-  Explanation: Every int from each set is included in the result, for dupes, like 2, include it 3 times,
-  because it occurs 3 times at most in ONE set
+    Explanation: Every int from each set is included in the result, for dupes, like 2, include it 3 times,
+    because it occurs 3 times at most in ONE set
 */
 
 /**
@@ -49,22 +49,21 @@ const expected5 = [];
  *    not the combined amount from both sets.
  */
 function orderedMultisetUnion(sortedA, sortedB) {
-    if (sortedA.length < 1 ) return sortedA
-    if (sortedB.length < 1 ) return sortedB
+    // if (sortedA.length < 1) return sortedA
+    // if (sortedB.length < 1) return sortedB
     let i = 0;
     let j = 0;
-    const res = []
-    let count = 0
-    while( i < sortedA.length && j < sortedB.length) {
-        if (sortedA[i] < sortedB[j]){
+    const res = [];
+    // let count = 0;
+    while (i < sortedA.length && j < sortedB.length) {
+        if (sortedA[i] < sortedB[j]) {
             res.push(sortedA[i]);
             i++;
         } else if (sortedA[i] === sortedB[j]) {
             res.push(sortedA[i]);
             i++;
             j++;
-        } 
-        
+        }
         else {
             res.push(sortedB[j])
             j++
@@ -76,10 +75,10 @@ function orderedMultisetUnion(sortedA, sortedB) {
 }
 
 
-console.log(orderedMultisetUnion(numbers1A, numbers1B), 'expected', expected1)
-console.log(orderedMultisetUnion(numbers2A, numbers2B), 'expected', expected2)
-console.log(orderedMultisetUnion(numbers3A, numbers3B), 'expected', expected3)
-console.log(orderedMultisetUnion(numbers4A, numbers4B), 'expected', expected4)
-console.log(orderedMultisetUnion(numbers5A, numbers5B), 'expected', expected5)
+console.log("1: \n" + orderedMultisetUnion(numbers1A, numbers1B), 'expected', expected1)
+console.log("2: \n" + orderedMultisetUnion(numbers2A, numbers2B), 'expected', expected2)
+console.log("3: \n" + orderedMultisetUnion(numbers3A, numbers3B), 'expected', expected3)
+console.log("4: \n" + orderedMultisetUnion(numbers4A, numbers4B), 'expected', expected4)
+console.log("5: \n" + orderedMultisetUnion(numbers5A, numbers5B), 'expected', expected5)
 
 /*****************************************************************************/
