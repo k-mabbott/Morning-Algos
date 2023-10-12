@@ -36,8 +36,8 @@ const expected3 = [6, 3, 2];
  * @returns {Array<number>} The k most frequently occurring numbers.
  */
 function kMostFrequent(numbers, k) {
-    const result = [];
-    data = {}
+    let result = [];
+    let data = {}
     for (let i = 0; i < numbers.length; i++) {
         if (data.hasOwnProperty(numbers[i])){
             data[numbers[i]]++
@@ -45,8 +45,38 @@ function kMostFrequent(numbers, k) {
             data[numbers[i]] = 1;
         }
     }
-    return data;
+    const sortable = Object.entries(data);
+    const sorted = sortable.sort((a,b) => b[1] - a[1])
+    for (let i = 0; i < k; i++){
+        result.push(parseInt(sorted[i][0]))
+    }
+    return result;
 }
+
+function topKFrequent(nums, k) {
+    let result = []
+    let hash = {}
+    for (let num of nums) {
+        if (!hash[num]) hash[num] = 0
+        hash[num]++
+    }
+    const sortable = Object.entries(hash);
+    const sorted = sortable.sort((a,b) => b[1] - a[1])
+    for (let i = 0; i < k; i++){
+        result.push(parseInt(sorted[i][0]))
+    }
+    return result
+}
+
+
+console.log(kMostFrequent(numbers1,k1)," Expected =>", expected1)
+console.log(kMostFrequent(numbers2,k2)," Expected =>", expected2)
+console.log(kMostFrequent(numbers3,k3)," Expected =>", expected3)
+
+console.log(topKFrequent(numbers1,k1)," Expected =>", expected1)
+console.log(topKFrequent(numbers2,k2)," Expected =>", expected2)
+console.log(topKFrequent(numbers3,k3)," Expected =>", expected3)
+
 
 
 /*****************************************************************************/
