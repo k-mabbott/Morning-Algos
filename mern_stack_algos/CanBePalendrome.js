@@ -44,23 +44,27 @@ function canStringBecomePalindrome(str) {
     const counts = {};
     let oddCounts = 0;
     for (let i = 0; i < str.length; i++) {
+        // console.log(counts[str[i]])
+        // set up turnary for if count has been seen before if not set to 1
+        counts[str[i]] = counts[str[i]] ? ++counts[str[i]] : 1
         if (counts[str[i]] % 2 === 1)
             oddCounts++
         else
             oddCounts--
     }
+    console.log(oddCounts)
     return oddCounts === 0 || oddCounts === 1
 }
 
-console.log(map)
-return map;
+// console.log(map)
+// return map;
 
 
-// console.log(canStringBecomePalindrome(str1),'=>', expected1)
-// console.log(canStringBecomePalindrome(str2),'=>', expected2)
-// console.log(canStringBecomePalindrome(str3),'=>', expected3)
+console.log(canStringBecomePalindrome(str1),'=>', expected1)
+console.log(canStringBecomePalindrome(str2),'=>', expected2)
+console.log(canStringBecomePalindrome(str3),'=>', expected3)
 console.log(canStringBecomePalindrome(str4), '=>', expected4)
-// console.log(canStringBecomePalindrome(str5),'=>', expected5)
-// console.log(canStringBecomePalindrome(str6),'=>', expected6)
+console.log(canStringBecomePalindrome(str5),'=>', expected5)
+console.log(canStringBecomePalindrome(str6),'=>', expected6)
 
 /*****************************************************************************/
