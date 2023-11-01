@@ -1,0 +1,34 @@
+
+
+
+
+const str1 = 'Hello World'
+const exp1 = {
+    'h' : 1,
+    'e' : 1,
+    'l' : 3,
+    'o' : 2,
+    'w' : 1,
+    'r' : 1,
+    'd' : 1,
+}
+
+
+
+
+const testChars = (str) => {
+    const lowerStr = str.toLowerCase();
+    const res = {}
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] == ' ') continue;
+        if (res.hasOwnProperty(lowerStr[i])) {
+            res[lowerStr[i]]++
+        } else {
+            res[lowerStr[i]] = 1;
+        }
+    }
+    return res;
+}
+
+
+console.log(testChars(str1), 'Exp =>', exp1)
