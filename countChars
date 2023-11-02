@@ -16,7 +16,7 @@ const exp1 = {
 
 
 
-const testChars = (str) => {
+const countChars = (str) => {
     const lowerStr = str.toLowerCase();
     const res = {}
     for (let i = 0; i < str.length; i++) {
@@ -31,4 +31,4 @@ const testChars = (str) => {
 }
 
 
-console.log(testChars(str1), 'Exp =>', exp1)
+console.log(countChars(str1), 'Exp =>', exp1)
