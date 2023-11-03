@@ -32,3 +32,5 @@ const countChars = (str) => {
 
 
 console.log(countChars(str1), 'Exp =>', exp1)
+
+

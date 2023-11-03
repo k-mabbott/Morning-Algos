@@ -62,7 +62,7 @@ console.log(diagonalDifference(squareMatrix2), 'expected:', expected02)
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+console.log('\n Next algo \n')
 /*
   Given two arrays of ints
 
@@ -104,10 +104,18 @@ const expected5 = [1, 2, 3];
 
 // Produces the symmetric differences, aka disjunctive union of two sets.
 
-function symmetricDifferences(numbersA, numbersB) {
+function symmetricDifferences1(numbersA, numbersB) {
     const diff = numbersA.filter(x => !numbersB.includes(x));
     return diff
 }
+
+function symmetricDifferences(numbersA, numbersB) {
+  const res = numbersA.filter(num => !numbersB.includes(num))
+  .concat(numbersB.filter(num => !numbersA.includes(num)));
+  
+  return [...new Set(res)];
+}
+
 
 
 console.log(symmetricDifferences(setA1, setB1), 'expected', expected1)
@@ -115,4 +123,5 @@ console.log(symmetricDifferences(setA2, setB2), 'expected', expected2)
 console.log(symmetricDifferences(setA3, setB3), 'expected', expected3)
 console.log(symmetricDifferences(setA4, setB4), 'expected', expected4)
 console.log(symmetricDifferences(setA5, setB5), 'expected', expected5)
+
 
