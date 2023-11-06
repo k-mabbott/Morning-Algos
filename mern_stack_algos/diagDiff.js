@@ -62,7 +62,7 @@ console.log(diagonalDifference(squareMatrix2), 'expected:', expected02)
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 
-console.log('\n Next algo \n')
+console.log('\nNext algo\n')
 /*
   Given two arrays of ints
 
