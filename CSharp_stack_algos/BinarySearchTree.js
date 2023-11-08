@@ -537,8 +537,6 @@ class BinarySearchTree {
 
 
 
-
-
 const emptyTree = new BinarySearchTree();
 //   console.log(emptyTree.isEmpty());
 
