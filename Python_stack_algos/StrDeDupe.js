@@ -35,8 +35,9 @@ function stringDedupe(str) {
     let temp =[]
     for (let i = str.length-1; i >= 0; i--){
         temp[str[i]] = str[i]
+        console.log(str[i])
     }
-    // console.log(temp)
+    console.log(temp)
     let result = Object.values(temp)
     return result.reverse().join('')
 }
@@ -47,9 +48,7 @@ console.log(stringDedupe(str3),'      ||', expected3);
 console.log(stringDedupe(str4),'     ||', expected4);
 console.log(stringDedupe(str5),'    ||', expected5);
 
-// for (let i = 0; i < str.length; i++){
 
-// for (let i = str.length-1; i >= 0; i--){
 // -------------------------------------------------Alternate method
 // function stringDedupe(str = "") {
 //     let distinctStr = "";
