@@ -98,6 +98,7 @@ function secondLargest(nums) {
     }
     let max = nums[0];
     let second = null;
+    // loop through numbers to find max / second
     for (let num of nums){
         if (num > max){
             second = max;
