@@ -9,7 +9,7 @@
 const str1 = "abcABCabcABCabcABC";
 const expected1 = "abcABC";
 
-const str2 = "helloo";
+const str2 = "hhelloo";
 const expected2 = "helo";
 
 const str3 = "";
