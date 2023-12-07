@@ -33,6 +33,7 @@ function parensValid(str) {
         } else if (str[i] == ')'){
             open--
         }
+        // if odd number of open or close parens
         if (open == -1){
             return false
         }
