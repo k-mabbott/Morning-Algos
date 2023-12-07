@@ -42,39 +42,42 @@ const expected3 = [-1, -1]; // not found.
  *    If there were multiple solutions, the one with the longest song should be used.
  */
 
-// function musicRuntime(busDuration, songDurations) {
-//     const rideDur = busDuration - 30
-//     let i = 0;
-//     let j = songDurations.length-1;
-//     const res = []
-//     const map = {
+// Need to fix  commented section
+/*
+function musicRuntime(busDuration, songDurations) {
+    const rideDur = busDuration - 30
+    let i = 0;
+    let j = songDurations.length-1;
+    const res = []
+    const map = {
 
-//     }
+    }
 
-//     for (let i = 0; i < songDurations.length; i++) {
-//         map[ rideDur - songDurations[i] ] = songDurations[i]
-//         if (map.hasOwnProperty(songDurations[i])){
-//             res.push([songDurations[i], map[songDurations[i]] ])
-//         }
-//     }
+    for (let i = 0; i < songDurations.length; i++) {
+        map[ rideDur - songDurations[i] ] = songDurations[i]
+        if (map.hasOwnProperty(songDurations[i])){
+            res.push([songDurations[i], map[songDurations[i]] ])
+        }
+    }
 
-//     // while (i <= j) {
+    // while (i <= j) {
 
 
-//     //     if (songDurations[i] + songDurations[j] === rideDur) {
-//     //         res.push([i, j])
-//     //         j--;
-//     //         i++;
-//     //     }
-//     //     else if (songDurations[i] + songDurations[j] > rideDur) {
-//     //         j--
-//     //     }
-//     //     else if (songDurations[i] + songDurations[j] < rideDur) {
-//     //         i++
-//     //     }
-//     // }
-//     return res
-// }
+    //     if (songDurations[i] + songDurations[j] === rideDur) {
+    //         res.push([i, j])
+    //         j--;
+    //         i++;
+    //     }
+    //     else if (songDurations[i] + songDurations[j] > rideDur) {
+    //         j--
+    //     }
+    //     else if (songDurations[i] + songDurations[j] < rideDur) {
+    //         i++
+    //     }
+    // }
+    return res
+}
+*/
 
 function musicRuntime(busDuration, songDurations) {
     const duration = busDuration - 30;
