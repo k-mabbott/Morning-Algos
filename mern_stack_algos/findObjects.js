@@ -43,19 +43,23 @@ const expected2 = [
    */
 
 function findObjects(criteria, collection) {
+    // Create empty array
     const result = [];
-
-    for (const val of collection) {
-        let match = true;
-        for (const key in criteria) {
+    // Loop thorugh Object
+    for (const val of collection) {// <-----
+        // Create variable bool            |
+        let match = true;             //   |
+        for (const key in criteria) { //   |
+            // If not in collection  -------
             if (criteria[key] !== val[key]) {
                 match = false;
                 break;
             }
         }
-        if (match) result.push(val);
+        // If Found eg match stays true;
+        if (match) result.push(val); // Push val to result array.
     }
-    return result;
+    return result; // return array
 }
 //----------------------------------------------------------------------
 function findObjectsFunctional (criteria, collection) {
