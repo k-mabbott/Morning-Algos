@@ -41,6 +41,8 @@ class MinHeap {
      * @param {number} num The num to add.
      */
 
+    // ******* FIX THIS ONEEEEE
+
     // get idx of parent.  Node at end of heap (heap.size)
     // while parent val is greater than new node swap values keep track of IDX // so smallest is on top
     // if swapped after swap check to see if newest node's left is less than self. 
